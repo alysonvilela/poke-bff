@@ -16,7 +16,7 @@ describe(LoggerSingleton.name, () => {
 
   it("should produce pretty logs", async () => {
     const someArgument = ["value: ", 1];
-    iot.log("testing", someArgument);
-    expect(consoleMock).toBeCalledWith("[TESTING]: ", someArgument);
+    iot.log("Testing", someArgument);
+    expect(consoleMock).toBeCalledWith("[Testing]: ", someArgument);
   });
 });

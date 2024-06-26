@@ -9,7 +9,7 @@ export class LoggerSingleton {
       return this.instance;
     }
     public log(where: string, message?: unknown) {
-      console.log(`[${where.toUpperCase()}]: `, message);
+      console.log(`[${where}]: `, message);
     }
   }
   
