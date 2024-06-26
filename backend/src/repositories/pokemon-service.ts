@@ -1,5 +1,5 @@
-import { IPokemon } from "../models/pokemon";
+import { IPokemonOutput } from "../models/pokemon-output";
 
 export abstract class PokemonServiceRepository {
-    abstract getPokemon(name: string): Promise<IPokemon>;
+    abstract getPokemon(name: string): Promise<IPokemonOutput | null>;
 }

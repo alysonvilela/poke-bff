@@ -1,20 +1,20 @@
 import { LoggerSingleton } from "../lib/logger";
 import { InMemoryPokemonServiceRepository } from "../repositories/mem/pokemon-service";
 import { PokemonServiceRepository } from "../repositories/pokemon-service";
-import { GetPokemonUseCase } from "./get-pokemon-service";
+import { GetPokemonAbilitiesUseCase } from "./get-pokemon-abilities-service";
 
 let consoleMock = vi.fn();
 
-describe(GetPokemonUseCase.name, () => {
+describe(GetPokemonAbilitiesUseCase.name, () => {
   let logger: LoggerSingleton;
   let pokemonServiceRepository: PokemonServiceRepository;
-  let iot: GetPokemonUseCase;
+  let iot: GetPokemonAbilitiesUseCase;
 
   beforeEach(() => {
     logger = LoggerSingleton.getInstance()
     pokemonServiceRepository = new InMemoryPokemonServiceRepository()
 
-    iot = new GetPokemonUseCase(logger, pokemonServiceRepository);
+    iot = new GetPokemonAbilitiesUseCase(logger, pokemonServiceRepository);
     vi.spyOn(global.console, "log").mockImplementation(consoleMock);
   });
 
@@ -23,10 +23,12 @@ describe(GetPokemonUseCase.name, () => {
   });
 
   it("should produce pretty logs", async () => {
-    const someArgument = ["value: ", 1];
-    iot.execute({
+    const res = await iot.execute({
       name: 'pikachu'
     });
-    expect(consoleMock).toBeCalledWith("[TESTING]: ", someArgument);
+    expect(res).toBe(expect.objectContaining({
+      result: (pokemonServiceRepository as InMemoryPokemonServiceRepository).db[0]
+    }));
+    expect(consoleMock).toBeCalledWith("[GETPOKEMONUSECASE]: ", expect.any(String));
   });
 });

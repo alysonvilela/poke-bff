@@ -1,13 +1,13 @@
 import { z } from "zod";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { GetPokemonUseCase } from "../services/get-pokemon-service";
+import { GetPokemonAbilitiesUseCase } from "../services/get-pokemon-abilities-service";
 
 const queryDto = z.object({
   name: z.string().max(30)
 });
 
 export class GetPokemonController {
-  constructor(private readonly getPokemonUseCase: GetPokemonUseCase) {}
+  constructor(private readonly getPokemonUseCase: GetPokemonAbilitiesUseCase) {}
   async handler(req: FastifyRequest, reply: FastifyReply) {
     const query = req.query as z.infer<typeof queryDto>;
 

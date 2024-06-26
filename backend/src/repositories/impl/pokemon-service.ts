@@ -1,7 +1,10 @@
 import { HttpClientSingleton } from "../../lib/http-client";
 import { LoggerSingleton } from "../../lib/logger";
 import { PokemonServiceRepository } from "../pokemon-service";
-import { IPokemon } from "../../models/pokemon";
+import { IPokemonOutput } from "../../models/pokemon-output";
+import { AxiosError } from "axios";
+import { NotFound } from "../../errors/not-found";
+import { IPokemonInput } from "../../models/pokemon-input";
 
 
 export class HttpPokemonServiceRepository implements PokemonServiceRepository {
@@ -10,9 +13,23 @@ export class HttpPokemonServiceRepository implements PokemonServiceRepository {
         private readonly httpClient: HttpClientSingleton) {
     }
 
-    async getPokemon(name: string): Promise<IPokemon> {
+    async getPokemon(name: string): Promise<IPokemonOutput | null> {
         this.logger.log(HttpPokemonServiceRepository.name, name)
-        const { data } = await this.httpClient.request.get('https://pokeapi.co/api/v2/pokemon/' + name);
-        return data
+        try {
+            const { data } = await this.httpClient.request.get<IPokemonInput>('https://pokeapi.co/api/v2/pokemon/' + name.toLowerCase());
+
+            return {
+                id: data.id,
+                name: data.name,
+                sprite: data.sprites.front_default,
+                abilities: data.abilities.sort((a, b) => a.ability.name < b.ability.name ? -1 : 1)
+            }
+        } catch (err) {
+            if (err instanceof AxiosError) {
+                throw new NotFound(err.message)
+            }
+            return null
+        }
+
     }
 }
