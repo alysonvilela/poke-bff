@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  app_backend_prd:
+    container_name: app_backend_prd
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    expose:
+      - '3000'
+    command: pnpm start
+    ports:
+      - '4000:3000'
+    tty: true
+  app_frontend_prd:
+    container_name: app_frontend_prd
+    build: ./frontend
+    env_file:
+      - ./frontend/.env.local
+    expose:
+      - '3000'
+    command: pnpm start
+    ports:
+      - '3000:3000'
+    tty: true
+  
