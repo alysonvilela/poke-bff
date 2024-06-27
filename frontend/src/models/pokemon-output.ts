@@ -20,4 +20,4 @@ export const pokemonSchema = z.object({
 })
 
 
-export type IPokemonOutput = z.infer<typeof pokemonSchema>
+export type IPokemon = z.infer<typeof pokemonSchema>

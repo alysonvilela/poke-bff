@@ -25,7 +25,8 @@ export class HttpPokemonServiceRepository implements PokemonServiceRepository {
                 id: data.id,
                 name: data.name,
                 sprite: data.sprites.front_default,
-                abilities: data.abilities.sort(sortPokemonByAbilityNameAsc)
+                abilities: data.abilities.sort(sortPokemonByAbilityNameAsc),
+                types: data.types.map((t) => t.type.name)
             }
         } catch (err) {
             if (err instanceof AxiosError) {

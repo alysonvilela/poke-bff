@@ -29,5 +29,6 @@ export const mockPokemonOutput: IPokemonOutput = {
             is_hidden: false,
             slot: 3
         }
-    ]
+    ],
+    types: ['normal', 'fire']
 }

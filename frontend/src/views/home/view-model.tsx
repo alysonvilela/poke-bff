@@ -22,7 +22,7 @@ export const useHomeViewModel = () => {
     }
 
     return {
-        data: query,
+        query,
         form,
         onSubmit
     }
