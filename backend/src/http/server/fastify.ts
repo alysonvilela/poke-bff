@@ -1,7 +1,7 @@
 import { getPokemonController } from "./ioc";
 import fastify from "fastify";
 import cors from "@fastify/cors";
-import { handler } from "../errors/handler";
+import { handler } from "../errors/_handler";
 
 const app = fastify();
 
@@ -14,7 +14,7 @@ app.register(cors, {
 
 
 app.get(
-  "/pokemon",
+  "/pokemon/:name",
   async (req, reply) => await getPokemonController.handler(req, reply)
 )
 

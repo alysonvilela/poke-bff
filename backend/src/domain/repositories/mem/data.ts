@@ -1,3 +1,5 @@
+import { IPokemonOutput } from "../../models/pokemon-output";
+
 export const mockPokemonOutput: IPokemonOutput = {
     id: 1,
     name: 'Testo',

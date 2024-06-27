@@ -1,5 +1,6 @@
 import fastify, { FastifyInstance } from "fastify"
 import { NotFound } from "./not-found";
+import { BadRequest } from "./bad-request";
 
 
 type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any ? A : never;
@@ -11,7 +12,9 @@ export const handler: ErrorHandler = (error, _request, reply) => {
         reply.status(500).send({ ok: false })
     } else if (error instanceof NotFound) {
         reply.status(error.code).send()
-    } else {
+    } else if (error instanceof BadRequest) {
+        reply.status(error.code).send()
+    } {
         reply.send(error)
     }
 }

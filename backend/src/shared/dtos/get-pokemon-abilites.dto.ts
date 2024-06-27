@@ -1,5 +1,5 @@
 import { z } from "zod";
 
 export const getPokemonAbilitiesDto = z.object({
-    name: z.string().max(30)
+    name: z.custom((val) =>  !/\d/.test(val) && val.length < 20) // String without numbers
 });

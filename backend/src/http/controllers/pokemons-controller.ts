@@ -1,22 +1,21 @@
 import { z } from "zod";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { GetPokemonAbilitiesUseCase } from "../../domain/services/get-pokemon-abilities-service";
+import { GetPokemonAbilitiesUseCase } from "../../domain/use-cases/get-pokemon-abilities-service";
 import { getPokemonAbilitiesDto } from "../../shared/dtos/get-pokemon-abilites.dto";
+import { BadRequest } from "../errors/bad-request";
 
 
 export class GetPokemonController {
   constructor(private readonly getPokemonUseCase: GetPokemonAbilitiesUseCase) { }
   async handler(req: FastifyRequest, reply: FastifyReply) {
-    const query = req.query as z.infer<typeof getPokemonAbilitiesDto>;
+    const { name } = req.params as z.infer<typeof getPokemonAbilitiesDto>;
 
     const { success, data: result } = getPokemonAbilitiesDto.safeParse({
-      name: query.name
+      name
     });
 
     if (!success) {
-      return reply.code(400).send({
-        message: "Bad request!",
-      });
+      throw new BadRequest('Invalid request');
     }
 
     const data = await this.getPokemonUseCase.execute({

@@ -1,13 +1,10 @@
 import { NotFound } from "./not-found";
 
-let consoleMock = vi.fn();
-
 describe(NotFound.name, () => {
   let iot: NotFound;
 
   beforeEach(() => {
     iot = new NotFound('')
-    vi.spyOn(global.console, "log").mockImplementation(consoleMock);
   });
 
   afterEach(() => {
