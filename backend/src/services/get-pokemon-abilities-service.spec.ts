@@ -1,3 +1,4 @@
+import exp = require("constants");
 import { LoggerSingleton } from "../lib/logger";
 import { InMemoryPokemonServiceRepository } from "../repositories/mem/pokemon-service";
 import { PokemonServiceRepository } from "../repositories/pokemon-service";
@@ -22,13 +23,19 @@ describe(GetPokemonAbilitiesUseCase.name, () => {
     vi.clearAllMocks();
   });
 
-  it("should produce pretty logs", async () => {
+  it("should order ability by asc name", async () => {
+    const requestResult = (pokemonServiceRepository as InMemoryPokemonServiceRepository).db[0]
+    expect(requestResult.abilities[0].ability.name.startsWith('a')).toBeFalsy()
+    expect(requestResult.abilities[1].ability.name.startsWith('b')).toBeFalsy()
+    expect(requestResult.abilities[2].ability.name.startsWith('z')).toBeFalsy()
+
     const res = await iot.execute({
-      name: 'pikachu'
+      name: 'Testo'
     });
-    expect(res).toBe(expect.objectContaining({
-      result: (pokemonServiceRepository as InMemoryPokemonServiceRepository).db[0]
-    }));
-    expect(consoleMock).toBeCalledWith("[GETPOKEMONUSECASE]: ", expect.any(String));
+
+    expect(res.result?.abilities[0].ability.name.startsWith('a')).toBeTruthy()
+    expect(res.result?.abilities[1].ability.name.startsWith('b')).toBeTruthy()
+    expect(res.result?.abilities[2].ability.name.startsWith('z')).toBeTruthy()
   });
+  
 });

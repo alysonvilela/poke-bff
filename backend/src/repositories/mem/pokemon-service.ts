@@ -1,6 +1,6 @@
 import { IPokemonOutput } from "../../models/pokemon-output";
+import { sortPokemonByAbilityNameAsc } from "../../utils/sort-pokemon-by-ability-nasme-asc";
 import { PokemonServiceRepository } from "../pokemon-service";
-
 
 export const mockPokemonOutput: IPokemonOutput = {
     id: 1,
@@ -32,16 +32,19 @@ export const mockPokemonOutput: IPokemonOutput = {
             slot: 3
         }
     ]
-
 }
+
 export class InMemoryPokemonServiceRepository implements PokemonServiceRepository {
     public db: IPokemonOutput[] = [mockPokemonOutput]
 
     async getPokemon(name: string): Promise<IPokemonOutput | null> {
-        const existing = this.db.find(pokemon => pokemon.name === name)
+        const existing = this.db.find(pokemon => pokemon.name.toLowerCase() === name.toLowerCase())
 
         if (existing) {
-            return existing
+            return {
+                ...existing,
+                abilities: existing.abilities.sort(sortPokemonByAbilityNameAsc)
+            }
         }
         return null
     }

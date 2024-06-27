@@ -5,7 +5,7 @@ import { IPokemonOutput } from "../../models/pokemon-output";
 import { AxiosError } from "axios";
 import { NotFound } from "../../errors/not-found";
 import { IPokemonInput } from "../../models/pokemon-input";
-
+import { sortPokemonByAbilityNameAsc } from "../../utils/sort-pokemon-by-ability-nasme-asc";
 
 export class HttpPokemonServiceRepository implements PokemonServiceRepository {
     constructor(
@@ -22,7 +22,7 @@ export class HttpPokemonServiceRepository implements PokemonServiceRepository {
                 id: data.id,
                 name: data.name,
                 sprite: data.sprites.front_default,
-                abilities: data.abilities.sort((a, b) => a.ability.name < b.ability.name ? -1 : 1)
+                abilities: data.abilities.sort(sortPokemonByAbilityNameAsc)
             }
         } catch (err) {
             if (err instanceof AxiosError) {
