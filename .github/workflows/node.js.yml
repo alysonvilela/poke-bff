@@ -1,42 +1,60 @@
 name: build-test-deploy
-on: push
+on:
+  push:
+    branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo
+      - name: Checkout repo
         uses: actions/checkout@v3
-        with:
-          path: backend
-      - name: use node.js
+        
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-      - run: npm install
+          
+      - name: Install backend dependencies
+        run: npm install
         working-directory: ./backend
-      - run: npm run build
+        
+      - name: Build backend
+        run: npm run build
         working-directory: ./backend
-      - run: npm install
-        working-directory: ./frontend
-      - run: npm run build
+        
+      - name: Install frontend dependencies
+        run: npm install
         working-directory: ./frontend
         
+      - name: Build frontend
+        run: npm run build
+        working-directory: ./frontend
 
   test:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo
+      - name: Checkout repo
         uses: actions/checkout@v3
-      - name: use node.js
+        
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-      - run: npm install
+          
+      - name: Install backend dependencies
+        run: npm install
         working-directory: ./backend
-      - run: npm test
+        
+      - name: Run backend tests
+        run: npm test
         working-directory: ./backend
-      - run: npm install
+        
+      - name: Install frontend dependencies
+        run: npm install
         working-directory: ./frontend
-      - run: npm test
+        
+      - name: Run frontend tests
+        run: npm test
         working-directory: ./frontend
