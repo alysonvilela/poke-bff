@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useGetPokemonByNameQuery } from "../../services/mutations/use-get-pokemon-by-name-query"
+import { useGetPokemonByNameQuery } from "../../services/queries/use-get-pokemon-by-name-query"
 import { SearchPokemonSchema, searchPokemonSchema } from "./search-pokemon-schema"
 import { SubmitHandler, useForm } from 'react-hook-form';
 

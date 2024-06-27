@@ -14,7 +14,7 @@ type GetPokemonResult = {
     result: IPokemon | null
 }
 
-async function getPokemonByName(name: string) {
+export async function getPokemonByName(name: string) {
     const { data } = await api.get<GetPokemonResult>(`/pokemon/${name}`);
     return data;
 }
