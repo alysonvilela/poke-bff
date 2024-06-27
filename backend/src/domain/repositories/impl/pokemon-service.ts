@@ -1,11 +1,12 @@
-import { HttpClientSingleton } from "../../lib/http-client";
-import { LoggerSingleton } from "../../lib/logger";
-import { PokemonServiceRepository } from "../pokemon-service";
-import { IPokemonOutput } from "../../models/pokemon-output";
 import { AxiosError } from "axios";
-import { NotFound } from "../../errors/not-found";
+import { HttpClientSingleton } from "../../../http/client/http-client";
+import { LoggerSingleton } from "../../../shared/config/logger";
+import { sortPokemonByAbilityNameAsc } from "../../../utils/sort-pokemon-by-ability-nasme-asc";
 import { IPokemonInput } from "../../models/pokemon-input";
-import { sortPokemonByAbilityNameAsc } from "../../utils/sort-pokemon-by-ability-nasme-asc";
+import { IPokemonOutput } from "../../models/pokemon-output";
+import { PokemonServiceRepository } from "../pokemon-service";
+import { NotFound } from "../../../http/errors/not-found";
+
 
 export class HttpPokemonServiceRepository implements PokemonServiceRepository {
     constructor(

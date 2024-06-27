@@ -1,8 +1,8 @@
-import { GetPokemonController } from "./controllers/pokemons-controller";
-import { HttpClientSingleton } from "./lib/http-client";
-import { LoggerSingleton } from "./lib/logger";
-import { HttpPokemonServiceRepository } from "./repositories/impl/pokemon-service";
-import { GetPokemonAbilitiesUseCase } from "./services/get-pokemon-abilities-service";
+import { HttpClientSingleton } from "../client/http-client";
+import { LoggerSingleton } from "../../shared/config/logger";
+import { GetPokemonController } from "../controllers/pokemons-controller";
+import { HttpPokemonServiceRepository } from "../../domain/repositories/impl/pokemon-service";
+import { GetPokemonAbilitiesUseCase } from "../../domain/services/get-pokemon-abilities-service";
 
 // Singletons
 export const logger = LoggerSingleton.getInstance();

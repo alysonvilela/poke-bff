@@ -1,8 +1,8 @@
 import exp = require("constants");
-import { LoggerSingleton } from "../lib/logger";
-import { InMemoryPokemonServiceRepository } from "../repositories/mem/pokemon-service";
-import { PokemonServiceRepository } from "../repositories/pokemon-service";
+import { LoggerSingleton } from "../../shared/config/logger";
 import { GetPokemonAbilitiesUseCase } from "./get-pokemon-abilities-service";
+import { PokemonServiceRepository } from "../repositories/pokemon-service";
+import { InMemoryPokemonServiceRepository } from "../repositories/mem/pokemon-service";
 
 let consoleMock = vi.fn();
 

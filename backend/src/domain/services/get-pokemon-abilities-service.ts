@@ -1,5 +1,5 @@
-import { LoggerSingleton } from "../lib/logger";
 import { PokemonServiceRepository } from "../repositories/pokemon-service";
+import { LoggerSingleton } from "../../shared/config/logger";
 
 interface RequestParams {
     name: string;
