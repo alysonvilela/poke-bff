@@ -11,7 +11,7 @@ export class HttpClientSingleton {
         if (!this.instance) {
             this.instance = new HttpClientSingleton();
             this.instance.request = axios.create({
-                baseURL: "https://pokeapi.co",
+                baseURL: envs.POKEMON_SERVICE_BASE_URL,
             })
         }
         return this.instance;
