@@ -16,10 +16,10 @@ const reactQueryWrapper = () => {
 }
 
 describe('HomeView', () => {
-  it('renders the App component', async () => {
+  it('renders the page', async () => {
     vi.spyOn(query, 'useGetPokemonByNameQuery')
     const wrapper = reactQueryWrapper()
-    const { rerender,  } = render(<Home />, {
+    render(<Home />, {
       wrapper
     })
 
