@@ -12,9 +12,7 @@ import { envs } from "../../../shared/config/envs";
 export class HttpPokemonServiceRepository implements PokemonServiceRepository {
     constructor(
         private readonly logger: LoggerSingleton,
-        private readonly httpClient: HttpClientSingleton) {
-            httpClient.setBaseUrl(envs.POKEMON_SERVICE_BASE_URL)
-    }
+        private readonly httpClient: HttpClientSingleton) {}
 
     async getPokemon(name: string): Promise<IPokemonOutput | null> {
         this.logger.log(HttpPokemonServiceRepository.name, name)
@@ -30,7 +28,7 @@ export class HttpPokemonServiceRepository implements PokemonServiceRepository {
             }
         } catch (err) {
             if (err instanceof AxiosError) {
-                this.logger.log(HttpPokemonServiceRepository.name, 'Error on request' + err)
+                this.logger.log(HttpPokemonServiceRepository.name, err)
                 throw new NotFound(err.message)
             }
             return null

@@ -27,7 +27,7 @@ describe(HttpPokemonServiceRepository.name, () => {
   it("should request correctly", async () => {
     await iot.getPokemon('Testo');
     expect(httpClient.request.get).toBeCalledTimes(1)
-    expect(httpClient.request.get).toBeCalledWith('https://pokeapi.co/api/v2/pokemon/testo')
+    expect(httpClient.request.get).toBeCalledWith('/api/v2/pokemon/testo')
   });
 
   it("should return output correctly", async () => {
