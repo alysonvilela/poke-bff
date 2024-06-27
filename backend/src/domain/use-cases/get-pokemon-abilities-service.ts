@@ -14,6 +14,7 @@ export class GetPokemonAbilitiesUseCase {
         this.logger.log(GetPokemonAbilitiesUseCase.name, "Getting pokemon: " + params.name);
         const data = await this.pokemonServiceRepository.getPokemon(params.name);
 
+        this.logger.log(GetPokemonAbilitiesUseCase.name, "Got pokemon: " + data)
         return { result: data }
     }
 }

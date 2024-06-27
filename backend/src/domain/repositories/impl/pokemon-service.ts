@@ -30,6 +30,7 @@ export class HttpPokemonServiceRepository implements PokemonServiceRepository {
             }
         } catch (err) {
             if (err instanceof AxiosError) {
+                this.logger.log(HttpPokemonServiceRepository.name, 'Error on request' + err)
                 throw new NotFound(err.message)
             }
             return null
