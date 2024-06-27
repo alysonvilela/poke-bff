@@ -1,6 +1,8 @@
 
 <img width="1408" alt="Captura de Tela 2024-06-27 às 13 45 04" src="https://github.com/alysonvilela/poke-bff/assets/22202745/315c8e95-1feb-4a23-9473-9f9a56c80b89">
 
+Você pode ver em produção [aqui](https://poke-bff.vercel.app/)
+
 ## Tecnologias utilizadas
 ### BACKEND:
 - Fastify
