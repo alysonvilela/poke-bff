@@ -25,7 +25,7 @@ export const Home: NextPage = () => {
                             <CardHeader>
                                 <CardTitle>Pesquisa</CardTitle>
                                 <CardDescription>
-                                    Used to identify your store in the marketplace.
+                                    Saiba quantas habilidades seu pokemon possui
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
