@@ -7,7 +7,7 @@ const queryDto = z.object({
 });
 
 export class GetPokemonController {
-  constructor(private readonly getPokemonUseCase: GetPokemonAbilitiesUseCase) {}
+  constructor(private readonly getPokemonUseCase: GetPokemonAbilitiesUseCase) { }
   async handler(req: FastifyRequest, reply: FastifyReply) {
     const query = req.query as z.infer<typeof queryDto>;
 
