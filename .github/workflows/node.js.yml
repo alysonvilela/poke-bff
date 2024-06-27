@@ -13,20 +13,23 @@ jobs:
         with:
           node-version: '18.x'
           
+      - name: Install pnpm
+        run: npm install -g pnpm
+        
       - name: Install backend dependencies
-        run: npm ci
+        run: pnpm install
         working-directory: ./backend
         
       - name: Build backend
-        run: npm run build
+        run: pnpm run build
         working-directory: ./backend
         
       - name: Install frontend dependencies
-        run: npm ci
+        run: pnpm install
         working-directory: ./frontend
         
       - name: Build frontend
-        run: npm run build
+        run: pnpm run build
         working-directory: ./frontend
 
   test:
@@ -41,18 +44,21 @@ jobs:
         with:
           node-version: '18.x'
           
+      - name: Install pnpm
+        run: npm install -g pnpm
+        
       - name: Install backend dependencies
-        run: npm ci
+        run: pnpm install
         working-directory: ./backend
         
       - name: Run backend tests
-        run: npm test
+        run: pnpm test
         working-directory: ./backend
         
       - name: Install frontend dependencies
-        run: npm ci
+        run: pnpm install
         working-directory: ./frontend
         
       - name: Run frontend tests
-        run: npm test
+        run: pnpm test
         working-directory: ./frontend
