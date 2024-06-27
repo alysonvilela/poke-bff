@@ -1,6 +1,12 @@
 import "dotenv/config";
+import { z } from "zod";
 
-export const envs = {
-  port: Number(process.env.PORT) || 3000,
-  pokemon_service_url: String(process.env.POKEMON_SERVICE_URL),
-};
+const envSchema = z.object({
+  PORT: z.number(),
+  POKEMON_SERVICE_BASE_URL: z.string(),
+})
+
+export const envs = envSchema.parse({
+  PORT: Number(process.env.PORT ?? 3000),
+  POKEMON_SERVICE_BASE_URL: String(process.env.POKEMON_SERVICE_BASE_URL),
+})

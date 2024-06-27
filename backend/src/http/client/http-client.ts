@@ -13,4 +13,10 @@ export class HttpClientSingleton {
         }
         return this.instance;
     }
+
+    public setBaseUrl(baseUrl: string) {
+        this.request = axios.create({
+            baseURL: baseUrl
+        })
+    }
 }
