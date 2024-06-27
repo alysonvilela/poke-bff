@@ -12,6 +12,7 @@ Você pode ver em produção [aqui](https://poke-bff.vercel.app/)
 - ESBuild (tsup)
 - PM2
 - Docker
+- Github Actions
 
 ### FRONTEND:
 - Nextjs
