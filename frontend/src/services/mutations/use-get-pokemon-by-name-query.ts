@@ -14,7 +14,7 @@ async function getPokemonByName(name: string) {
     return data;
 }
 
-export const usePokemonByNameQuery = ({
+export const useGetPokemonByNameQuery = ({
     name,
     enabled = false
 }: Params) => useQuery({
