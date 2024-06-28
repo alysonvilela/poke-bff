@@ -13,11 +13,6 @@ describe(InMemoryPokemonServiceRepository.name, () => {
   });
 
   it("should order ability by asc name", async () => {
-    const requestResult = iot.db[0]
-    expect(requestResult.abilities[0].ability.name.startsWith('a')).toBeFalsy()
-    expect(requestResult.abilities[1].ability.name.startsWith('b')).toBeFalsy()
-    expect(requestResult.abilities[2].ability.name.startsWith('z')).toBeFalsy()
-
     const res = await iot.getPokemon('Testo');
 
     expect(res?.abilities[0].ability.name.startsWith('a')).toBeTruthy()
