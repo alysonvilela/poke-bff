@@ -1,5 +1,8 @@
-name: build-test-deploy
-on: push
+name: RUN TESTS
+
+on:
+  push:
+    branches: [ main ]
 
 jobs:
   build:
