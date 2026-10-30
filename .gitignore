@@ -7,3 +7,6 @@ frontend/dist
 frontend/.env
 config.bat
 node_modules
+.env
+.env.*
+!.env.example
